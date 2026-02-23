@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+
+const experiences = await getCollection('experience');
+const sorted = experiences.sort((a, b) => {
+  // Sort by start year descending (most recent first)
+  const yearA = parseInt(a.data.date.split(' ').pop() ?? '0');
+  const yearB = parseInt(b.data.date.split(' ').pop() ?? '0');
+  return yearB - yearA;
+});
+---
+
+<section class="section" id="experiencia">
+  <div class="max-w-5xl mx-auto">
+    <div class="mb-16">
+      <p class="text-[10px] font-mono uppercase tracking-[0.5em] text-[#00f6ff] mb-4">01. Experiencia</p>
+      <h2 class="text-5xl md:text-7xl font-black leading-none uppercase tracking-tighter">
+        Proyectos<span class="text-[#00f6ff]">.</span>
+      </h2>
+    </div>
+
+    <div class="space-y-6" id="experience-list">
+      {sorted.map((exp, i) => (
+        <article
+          class="exp-card border border-slate-800 bg-[#111d3c]/50 p-8 md:p-10 hover:border-[#00f6ff]/40 transition-colors duration-500 opacity-0"
+          style={`--delay: ${i * 0.15}s`}
+        >
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-1">
+                {exp.data.title}
+              </h3>
+              <p class="text-[#00f6ff] font-mono text-sm uppercase tracking-widest">
+                {exp.data.company}
+              </p>
+            </div>
+            <span class="text-xs font-mono text-slate-500 uppercase tracking-widest whitespace-nowrap">
+              {exp.data.date}
+            </span>
+          </div>
+
+          <p class="text-slate-400 leading-relaxed mb-6">
+            {exp.data.description}
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            {exp.data.tags.map((tag: string) => (
+              <span class="px-3 py-1 text-[10px] font-mono uppercase tracking-widest border border-[#00f6ff]/30 text-[#00f6ff]/70 hover:border-[#00f6ff] hover:text-[#00f6ff] transition-colors">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = document.querySelectorAll('.exp-card');
+  cards.forEach((card) => {
+    gsap.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        once: true,
+      },
+    });
+
+    gsap.set(card, { y: 50 });
+  });
+</script>

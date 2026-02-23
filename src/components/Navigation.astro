@@ -1,0 +1,41 @@
+---
+const navItems = [
+  { name: 'Inicio', href: '#hero' },
+  { name: 'Experiencia', href: '#experiencia' },
+  { name: 'Educación', href: '#educacion' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/josephyauri/' },
+];
+---
+
+<nav class="fixed top-6 right-6 md:top-10 md:right-10 z-[100] opacity-0" id="main-nav">
+  <ul class="flex flex-col items-end gap-2">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class="text-[10px] font-mono uppercase tracking-[0.4em] text-slate-400 hover:text-[#00f6ff] transition-colors duration-300"
+        >
+          {item.name}
+        </a>
+      </li>
+    ))}
+    <li class="mt-3">
+      <div class="w-8 h-[1px] bg-[#00f6ff]"></div>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const initNav = () => {
+    gsap.to("#main-nav", {
+      opacity: 1,
+      duration: 1,
+      delay: 2.5,
+      ease: "power2.out"
+    });
+  };
+
+  initNav();
+</script>

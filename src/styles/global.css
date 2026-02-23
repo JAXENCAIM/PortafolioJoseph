@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg-deep: #0B132B;
+  --color-bg-card: #111d3c;
+  --color-accent-cyan: #00f6ff;
+  --color-text-dim: #CBD5E1;
+  --font-main: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #0B132B;
+    color: #CBD5E1;
+    font-family: "Space Grotesk", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background-color: #00f6ff;
+    color: #0B132B;
+  }
+}
+
+/* Scrollbar Hide */
+::-webkit-scrollbar { display: none; }
+* { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Section base */
+.section {
+  width: 100%;
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 8rem 6rem;
+  }
+}
+
+/* Cyan glow utility */
+.glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 246, 255, 0.5);
+}

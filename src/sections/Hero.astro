@@ -1,0 +1,151 @@
+---
+---
+<section class="relative min-h-screen flex flex-col justify-center px-6 md:px-24 overflow-hidden" id="hero">
+  <canvas id="blueprint-canvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none"></canvas>
+
+  <div class="relative z-10 max-w-5xl">
+    <p class="text-[10px] font-mono uppercase tracking-[0.5em] text-[#00f6ff] mb-6 opacity-0" id="hero-tag">
+      Ingeniero Civil // PUCP // Top 4
+    </p>
+
+    <h1 class="text-[clamp(3.5rem,10vw,8rem)] leading-[0.9] font-black uppercase tracking-tighter mb-6" id="hero-name">
+      <span class="block overflow-hidden">
+        <span class="letter inline-block">J</span><span class="letter inline-block">o</span><span class="letter inline-block">s</span><span class="letter inline-block">e</span><span class="letter inline-block">p</span><span class="letter inline-block">h</span>
+      </span>
+      <span class="block overflow-hidden">
+        <span class="letter inline-block">Y</span><span class="letter inline-block">a</span><span class="letter inline-block">u</span><span class="letter inline-block">r</span><span class="letter inline-block">i</span>
+        <span class="letter inline-block text-[#00f6ff]">.</span>
+      </span>
+    </h1>
+
+    <p class="text-lg md:text-2xl font-light text-[#00f6ff] uppercase tracking-[0.15em] mb-6 opacity-0" id="hero-subtitle">
+      Geotecnia · Presas de Relaves · Metodología BIM
+    </p>
+
+    <p class="text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed opacity-0" id="hero-desc">
+      Egresado de la PUCP (Top 4) con experiencia internacional en la UNAM.
+      Especializado en operaciones de depósitos de relaves mineros, diseño geométrico
+      de vías y control de proyectos con Primavera P6 y Power BI.
+    </p>
+
+    <div class="mt-12 flex flex-wrap gap-4 opacity-0" id="hero-cta">
+      <a href="#experiencia" class="px-8 py-3 border border-[#00f6ff] text-[#00f6ff] text-xs font-mono uppercase tracking-widest hover:bg-[#00f6ff] hover:text-[#0B132B] transition-all duration-300">
+        Ver Experiencia
+      </a>
+      <a href="https://www.linkedin.com/in/josephyauri/" target="_blank" rel="noopener" class="px-8 py-3 border border-slate-700 text-slate-400 text-xs font-mono uppercase tracking-widest hover:border-[#00f6ff] hover:text-[#00f6ff] transition-all duration-300">
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-6 md:left-24 opacity-0" id="hero-scroll">
+    <p class="text-[10px] font-mono uppercase tracking-widest text-slate-600 animate-pulse">
+      Scroll Down // [v.01]
+    </p>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // --- Blueprint / CAD Grid Canvas ---
+  const initBlueprint = () => {
+    const canvas = document.getElementById('blueprint-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const GRID = 60;
+    let mouse = { x: -9999, y: -9999 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    const draw = () => {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const cols = Math.ceil(w / GRID) + 1;
+      const rows = Math.ceil(h / GRID) + 1;
+
+      // Grid lines
+      ctx.strokeStyle = 'rgba(0, 246, 255, 0.08)';
+      ctx.lineWidth = 0.5;
+
+      for (let c = 0; c < cols; c++) {
+        const x = c * GRID;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let r = 0; r < rows; r++) {
+        const y = r * GRID;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Intersection nodes — glow near cursor
+      for (let c = 0; c < cols; c++) {
+        for (let r = 0; r < rows; r++) {
+          const nx = c * GRID;
+          const ny = r * GRID;
+          const dist = Math.hypot(mouse.x - nx, mouse.y - ny);
+          const maxDist = 180;
+
+          if (dist < maxDist) {
+            const intensity = 1 - dist / maxDist;
+            const radius = 2 + intensity * 4;
+            ctx.beginPath();
+            ctx.arc(nx, ny, radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 246, 255, ${intensity * 0.8})`;
+            ctx.shadowBlur = 10 * intensity;
+            ctx.shadowColor = '#00f6ff';
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          } else {
+            ctx.beginPath();
+            ctx.arc(nx, ny, 1, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 246, 255, 0.12)';
+            ctx.fill();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    };
+
+    draw();
+  };
+
+  // --- GSAP Entrance Animations ---
+  const initReveal = () => {
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+
+    tl.from('.letter', {
+      yPercent: 110,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.04,
+    })
+    .to('#hero-tag', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+    .to('#hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+    .to('#hero-desc', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+    .to('#hero-cta', { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
+    .to('#hero-scroll', { opacity: 1, duration: 0.6 }, '-=0.2');
+  };
+
+  initBlueprint();
+  initReveal();
+</script>

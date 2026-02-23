@@ -1,0 +1,58 @@
+---
+import Navigation from '../components/Navigation.astro';
+import '@fontsource/space-grotesk';
+import '@fontsource/inter';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Portafolio de Joseph Fred Yauri Cajas — Ingeniero Civil PUCP, especialista en Geotecnia, Presas de Relaves y Metodología BIM." />
+    <meta name="author" content="Joseph Fred Yauri Cajas" />
+    <meta name="keywords" content="Joseph Yauri Cajas, Joseph Yauri, Ingeniero Civil, PUCP, Geotecnia, Relaves, BIM, AutoCAD Civil 3D, Primavera P6, Peru" />
+    <link rel="canonical" href="https://joseph.teamvastoria.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Joseph Yauri Cajas — Ingeniero Civil" />
+    <meta property="og:description" content="Ingeniero Civil PUCP (Top 4), especialista en operaciones de relaves mineros, diseño vial y metodología BIM." />
+    <meta property="og:url" content="https://joseph.teamvastoria.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Joseph Fred Yauri Cajas",
+      "alternateName": "Joseph Yauri",
+      "url": "https://joseph.teamvastoria.com",
+      "jobTitle": "Ingeniero Civil",
+      "alumniOf": [{"@type": "CollegeOrUniversity", "name": "PUCP"}, {"@type": "CollegeOrUniversity", "name": "UNAM"}],
+      "sameAs": [
+        "https://www.linkedin.com/in/josephyauri/"
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>
