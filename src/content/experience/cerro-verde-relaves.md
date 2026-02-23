@@ -1,7 +1,7 @@
 ---
-title: "Gestión Operativa y QA/QC en Presas de Relaves"
-company: "Sociedad Minera Cerro Verde"
-date: "Ene 2025 - Dic 2025"
-description: "Participación en el control de calidad (QA/QC) aplicados a la deposición de relaves, verificando parámetros críticos como contenido de finos y compactación. Desarrollo de estudios geotécnicos, criterios de estabilidad física, modelamiento del flujo de agua y comportamiento de materiales para la operación segura y sostenible del depósito minero."
-tags: ["QA/QC", "Análisis Geotécnico", "AutoCAD Civil 3D", "Control de Calidad"]
+title: "Becario — Área de Relaves"
+company: "Sociedad Minera Cerro Verde · Uchumayo, Arequipa"
+date: "Ene 2025 - Dic 2025 · 1 año"
+description: "Desarrollé una comprensión integral del proceso de deposición de relaves y operación de presas, incluyendo la construcción del dique mediante depositación hidráulica, recuperación de agua y cuidados técnicos para garantizar la estabilidad del sistema. Participé en control de calidad con seguimiento y análisis de ensayos de compactación y granulometría, fundamentales para asegurar el cumplimiento de los parámetros de diseño. Fortalecí conocimientos en instrumentación aplicada a los depósitos Linga y Enlozada, comprendiendo el ciclo de equipos y el uso de datos para la toma de decisiones."
+tags: ["QA/QC", "Compactación y Granulometría", "AutoCAD Civil 3D", "Instrumentación Geotécnica", "Depositación Hidráulica"]
 ---

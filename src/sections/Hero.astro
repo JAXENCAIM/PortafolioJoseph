@@ -1,40 +1,71 @@
 ---
+import { Image } from 'astro:assets';
+import portrait from '../assets/ImagenPerfilJoseph.png';
 ---
-<section class="relative min-h-screen flex flex-col justify-center px-6 md:px-24 overflow-hidden" id="hero">
-  <canvas id="blueprint-canvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none"></canvas>
 
-  <div class="relative z-10 max-w-5xl">
-    <p class="text-[10px] font-mono uppercase tracking-[0.5em] text-[#00f6ff] mb-6 opacity-0" id="hero-tag">
-      Ingeniero Civil // PUCP // Top 4
-    </p>
+<section class="relative min-h-screen flex flex-col justify-center px-6 md:px-24 py-24 lg:py-0" id="hero">
+  <!-- Canvas contained so it doesn't clip the image on mobile -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <canvas id="blueprint-canvas" class="w-full h-full opacity-30"></canvas>
+  </div>
 
-    <h1 class="text-[clamp(3.5rem,10vw,8rem)] leading-[0.9] font-black uppercase tracking-tighter mb-6" id="hero-name">
-      <span class="block overflow-hidden">
-        <span class="letter inline-block">J</span><span class="letter inline-block">o</span><span class="letter inline-block">s</span><span class="letter inline-block">e</span><span class="letter inline-block">p</span><span class="letter inline-block">h</span>
-      </span>
-      <span class="block overflow-hidden">
-        <span class="letter inline-block">Y</span><span class="letter inline-block">a</span><span class="letter inline-block">u</span><span class="letter inline-block">r</span><span class="letter inline-block">i</span>
-        <span class="letter inline-block text-[#00f6ff]">.</span>
-      </span>
-    </h1>
+  <div class="relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-12 max-w-6xl">
 
-    <p class="text-lg md:text-2xl font-light text-[#00f6ff] uppercase tracking-[0.15em] mb-6 opacity-0" id="hero-subtitle">
-      Geotecnia · Presas de Relaves · Metodología BIM
-    </p>
+    <!-- Text content -->
+    <div class="flex-1">
+      <p class="text-[10px] font-mono uppercase tracking-[0.5em] text-[#00f6ff] mb-6 opacity-0" id="hero-tag">
+        Ingeniero Civil // PUCP // Top 4
+      </p>
 
-    <p class="text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed opacity-0" id="hero-desc">
-      Egresado de la PUCP (Top 4) con experiencia internacional en la UNAM.
-      Especializado en operaciones de depósitos de relaves mineros, diseño geométrico
-      de vías y control de proyectos con Primavera P6 y Power BI.
-    </p>
+      <h1 class="text-[clamp(3.5rem,10vw,8rem)] leading-[0.9] font-black uppercase tracking-tighter mb-6" id="hero-name">
+        <span class="block overflow-hidden">
+          <span class="letter inline-block">J</span><span class="letter inline-block">o</span><span class="letter inline-block">s</span><span class="letter inline-block">e</span><span class="letter inline-block">p</span><span class="letter inline-block">h</span>
+        </span>
+        <span class="block overflow-hidden">
+          <span class="letter inline-block">Y</span><span class="letter inline-block">a</span><span class="letter inline-block">u</span><span class="letter inline-block">r</span><span class="letter inline-block">i</span>
+          <span class="letter inline-block text-[#00f6ff]">.</span>
+        </span>
+      </h1>
 
-    <div class="mt-12 flex flex-wrap gap-4 opacity-0" id="hero-cta">
-      <a href="#experiencia" class="px-8 py-3 border border-[#00f6ff] text-[#00f6ff] text-xs font-mono uppercase tracking-widest hover:bg-[#00f6ff] hover:text-[#0B132B] transition-all duration-300">
-        Ver Experiencia
-      </a>
-      <a href="https://www.linkedin.com/in/josephyauri/" target="_blank" rel="noopener" class="px-8 py-3 border border-slate-700 text-slate-400 text-xs font-mono uppercase tracking-widest hover:border-[#00f6ff] hover:text-[#00f6ff] transition-all duration-300">
-        LinkedIn
-      </a>
+      <p class="text-lg md:text-2xl font-light text-[#00f6ff] uppercase tracking-[0.15em] mb-6 opacity-0" id="hero-subtitle">
+        Geotecnia · Presas de Relaves · Metodología BIM
+      </p>
+
+      <p class="text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed opacity-0" id="hero-desc">
+        Egresado de la PUCP (Top 4) con experiencia internacional en la UNAM.
+        Especializado en operaciones de depósitos de relaves mineros, diseño geométrico
+        de vías y control de proyectos con Primavera P6 y Power BI.
+      </p>
+
+      <div class="mt-12 flex flex-wrap gap-4 opacity-0" id="hero-cta">
+        <a href="#experiencia" class="px-8 py-3 border border-[#00f6ff] text-[#00f6ff] text-xs font-mono uppercase tracking-widest hover:bg-[#00f6ff] hover:text-[#0B132B] transition-all duration-300">
+          Ver Experiencia
+        </a>
+        <a href="https://www.linkedin.com/in/joseph-fred-yauri-cajas-587a29254/" target="_blank" rel="noopener" class="px-8 py-3 border border-slate-700 text-slate-400 text-xs font-mono uppercase tracking-widest hover:border-[#00f6ff] hover:text-[#00f6ff] transition-all duration-300">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <!-- Portrait -->
+    <div class="relative group flex-shrink-0 opacity-0" id="hero-portrait-container">
+      <!-- Glow background -->
+      <div class="absolute inset-0 bg-[#00f6ff] scale-95 blur-3xl opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
+
+      <!-- Image wrapper for cyan tint on hover -->
+      <div class="relative z-10 overflow-hidden">
+        <Image
+          src={portrait}
+          alt="Joseph Yauri Cajas"
+          class="portrait-img w-[240px] md:w-[340px] lg:w-[420px] transition-all duration-700"
+          id="hero-portrait"
+        />
+        <!-- Cyan color overlay — visible on hover -->
+        <div class="absolute inset-0 bg-[#00f6ff]/0 group-hover:bg-[#00f6ff]/15 transition-all duration-700 mix-blend-color pointer-events-none"></div>
+      </div>
+
+      <!-- Brutalist frame -->
+      <div class="absolute -inset-4 border border-[#00f6ff]/20 -z-10 translate-x-4 translate-y-4"></div>
     </div>
   </div>
 
@@ -44,6 +75,17 @@
     </p>
   </div>
 </section>
+
+<style>
+  .portrait-img {
+    filter: grayscale(1) contrast(1.1) brightness(0.9);
+    transition: filter 0.7s ease;
+  }
+  .group:hover .portrait-img {
+    /* Remove grayscale, apply subtle cyan hue shift */
+    filter: grayscale(0) sepia(0.4) hue-rotate(160deg) saturate(2) brightness(1);
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
@@ -55,8 +97,8 @@
     const ctx = canvas.getContext('2d')!;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
     resize();
     window.addEventListener('resize', resize);
@@ -64,9 +106,22 @@
     const GRID = 60;
     let mouse = { x: -9999, y: -9999 };
 
+    // Mouse support (desktop)
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+    });
+
+    // Touch support (mobile)
+    window.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
     });
 
     const draw = () => {
@@ -80,23 +135,16 @@
       // Grid lines
       ctx.strokeStyle = 'rgba(0, 246, 255, 0.08)';
       ctx.lineWidth = 0.5;
-
       for (let c = 0; c < cols; c++) {
         const x = c * GRID;
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
       }
       for (let r = 0; r < rows; r++) {
         const y = r * GRID;
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
-      // Intersection nodes — glow near cursor
+      // Intersection nodes — glow near cursor/touch
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
           const nx = c * GRID;
@@ -106,9 +154,8 @@
 
           if (dist < maxDist) {
             const intensity = 1 - dist / maxDist;
-            const radius = 2 + intensity * 4;
             ctx.beginPath();
-            ctx.arc(nx, ny, radius, 0, Math.PI * 2);
+            ctx.arc(nx, ny, 2 + intensity * 4, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(0, 246, 255, ${intensity * 0.8})`;
             ctx.shadowBlur = 10 * intensity;
             ctx.shadowColor = '#00f6ff';
@@ -129,21 +176,18 @@
     draw();
   };
 
-  // --- GSAP Entrance Animations ---
+  // --- GSAP Entrance ---
   const initReveal = () => {
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    gsap.set('#hero-portrait-container', { scale: 0.85 });
 
-    tl.from('.letter', {
-      yPercent: 110,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.04,
-    })
-    .to('#hero-tag', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-    .to('#hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-    .to('#hero-desc', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-    .to('#hero-cta', { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
-    .to('#hero-scroll', { opacity: 1, duration: 0.6 }, '-=0.2');
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    tl.from('.letter', { yPercent: 110, opacity: 0, duration: 1.2, stagger: 0.04 })
+      .to('#hero-portrait-container', { opacity: 1, scale: 1, duration: 1.2, ease: 'power4.out' }, '-=1')
+      .to('#hero-tag',      { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+      .to('#hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+      .to('#hero-desc',     { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+      .to('#hero-cta',      { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
+      .to('#hero-scroll',   { opacity: 1, duration: 0.6 },       '-=0.2');
   };
 
   initBlueprint();

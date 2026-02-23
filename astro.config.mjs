@@ -5,6 +5,9 @@ import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 
 export default defineConfig({
+  server: {
+    port: 4322,
+  },
   vite: {
     plugins: [tailwindcss()]
   },
